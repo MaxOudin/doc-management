@@ -13,5 +13,6 @@
 class Residence < ApplicationRecord
   belongs_to :user
 
+  has_one :adresse, as: :addressable, class_name: 'Adresse', dependent: :destroy
   has_one_attached :justif_residence, dependent: :destroy
 end
