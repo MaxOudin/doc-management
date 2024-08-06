@@ -2,14 +2,14 @@ class Affectation < ApplicationRecord
   belongs_to :user
   belongs_to :site
 
+  has_one :adresse_site, through: :site, source: :adresse
+  has_one :admin1, through: :site
+
   validates :user_id, presence: true
   validates :site_id, presence: true
   validates :date_debut, presence: true
   validates :end_date, presence: true
   validate :date_debut_before_end_date
-
-  has_one :adresse, through: :site
-  has_many :admin1s, through: :site
 
   before_save :affectation_terminee
 

@@ -10,10 +10,10 @@ class User < ApplicationRecord
   validates :nom, presence: true
   validates :prenom, presence: true
 
+  has_one :adresse, as: :addressable, class_name: 'Adresse', dependent: :destroy
+  has_one :vehicule, dependent: :destroy
   has_many :affectations, dependent: :destroy
   has_many :sites, through: :affectations
-  has_one :adresse, dependent: :destroy
-  has_one :vehicule, dependent: :destroy
   has_many :deplacements, dependent: :destroy
 
 end

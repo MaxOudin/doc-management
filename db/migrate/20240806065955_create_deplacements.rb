@@ -5,6 +5,8 @@ class CreateDeplacements < ActiveRecord::Migration[7.1]
       t.references :affectation, null: false, foreign_key: true
       t.boolean :grand_deplacement, default: false
       t.integer :montant
+      t.integer :nb_km
+      t.integer :status, default: 0
 
       t.timestamps
     end
