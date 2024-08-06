@@ -55,6 +55,18 @@ group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+
+  gem 'annotate', '~> 3.2'
+
+  # Pry pour débuggage
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "byebug"
+
+  # Tests + Factory Bot pour les tests
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "database_cleaner"
 end
 
 group :development do
@@ -66,6 +78,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'letter_opener', '~> 1.10'
+  gem 'rails-erd'
 end
 
 group :test do
