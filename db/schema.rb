@@ -47,7 +47,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_083015) do
     t.integer "code_postal"
     t.string "ville"
     t.string "pays"
-    t.boolean "principale", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["addressable_type", "addressable_id"], name: "index_adresses_on_addressable_type_and_addressable_id"

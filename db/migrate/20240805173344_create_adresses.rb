@@ -13,7 +13,6 @@ class CreateAdresses < ActiveRecord::Migration[7.1]
       t.integer :code_postal
       t.string :ville
       t.string :pays
-      t.boolean :principale, default: false
 
       t.timestamps
     end
