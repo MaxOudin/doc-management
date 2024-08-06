@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_06_083015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
 
   create_table "affectations", force: :cascade do |t|
     t.date "date_debut"
-    t.date "end_date"
+    t.date "date_fin"
     t.boolean "active", default: false
     t.bigint "user_id", null: false
     t.bigint "site_id", null: false
@@ -71,23 +71,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
     t.boolean "grand_deplacement", default: false
     t.integer "montant"
     t.integer "nb_km"
-    t.integer "status", default: 0
+    t.integer "status", default: 0, null: false
+    t.date "date_televersement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["affectation_id"], name: "index_deplacements_on_affectation_id"
     t.index ["user_id"], name: "index_deplacements_on_user_id"
-  end
-
-  create_table "documents", force: :cascade do |t|
-    t.integer "document_type", null: false
-    t.integer "status", null: false
-    t.date "date_televersement"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["document_type"], name: "index_documents_on_document_type"
-    t.index ["status"], name: "index_documents_on_status"
-    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -99,6 +88,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_invitations_on_receiver_id"
     t.index ["sender_id"], name: "index_invitations_on_sender_id"
+  end
+
+  create_table "justificatifs", force: :cascade do |t|
+    t.integer "justificatif_type", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.date "date_televersement"
+    t.bigint "user_id"
+    t.integer "montant"
+    t.string "commentaire"
+    t.boolean "valide", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["justificatif_type"], name: "index_justificatifs_on_justificatif_type"
+    t.index ["status"], name: "index_justificatifs_on_status"
+    t.index ["user_id"], name: "index_justificatifs_on_user_id"
   end
 
   create_table "notifies", force: :cascade do |t|
@@ -116,6 +120,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_relances_on_receiver_id"
     t.index ["sender_id"], name: "index_relances_on_sender_id"
+  end
+
+  create_table "residences", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.date "date_debut"
+    t.date "date_fin"
+    t.boolean "principale", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sites", force: :cascade do |t|
@@ -149,6 +162,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
     t.string "immatriculation"
     t.string "nom"
     t.string "prenom"
+    t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -160,9 +174,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_065955) do
   add_foreign_key "affectations", "users"
   add_foreign_key "deplacements", "affectations"
   add_foreign_key "deplacements", "users"
-  add_foreign_key "documents", "users"
   add_foreign_key "invitations", "users", column: "receiver_id"
   add_foreign_key "invitations", "users", column: "sender_id"
+  add_foreign_key "justificatifs", "users"
   add_foreign_key "relances", "users", column: "receiver_id"
   add_foreign_key "relances", "users", column: "sender_id"
   add_foreign_key "sites", "admin1s"

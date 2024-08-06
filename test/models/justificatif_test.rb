@@ -1,21 +1,21 @@
 # == Schema Information
 #
-# Table name: deplacements
+# Table name: justificatifs
 #
 #  id                 :bigint           not null, primary key
-#  user_id            :bigint           not null
-#  affectation_id     :bigint           not null
-#  grand_deplacement  :boolean          default(FALSE)
-#  montant            :integer
-#  nb_km              :integer
+#  justificatif_type  :integer          default("permis_conduire"), not null
 #  status             :integer          default("attente"), not null
 #  date_televersement :date
+#  user_id            :bigint
+#  montant            :integer
+#  commentaire        :string
+#  valide             :boolean          default(FALSE)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
 require "test_helper"
 
-class DeplacementTest < ActiveSupport::TestCase
+class JustificatifTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

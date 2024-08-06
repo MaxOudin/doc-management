@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: admin0s
+# Table name: residences
 #
 #  id         :bigint           not null, primary key
-#  nom        :string
-#  code       :string
-#  longitude  :float
-#  latitude   :float
+#  status     :integer          default(0), not null
+#  date_debut :date
+#  date_fin   :date
+#  principale :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 FactoryBot.define do
-  factory :admin0 do
-    longitude { 1.5 }
-    latitude { 1.5 }
+  factory :residence do
+    
   end
 end

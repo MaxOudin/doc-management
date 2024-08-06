@@ -1,15 +1,18 @@
 # == Schema Information
 #
-# Table name: notifies
+# Table name: residences
 #
 #  id         :bigint           not null, primary key
-#  message    :text
+#  status     :integer          default(0), not null
+#  date_debut :date
+#  date_fin   :date
+#  principale :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 require "test_helper"
 
-class NotifyTest < ActiveSupport::TestCase
+class ResidenceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -6,7 +6,8 @@ class CreateDeplacements < ActiveRecord::Migration[7.1]
       t.boolean :grand_deplacement, default: false
       t.integer :montant
       t.integer :nb_km
-      t.integer :status, default: 0
+      t.integer :status, null: false, default: 0
+      t.date :date_televersement
 
       t.timestamps
     end
