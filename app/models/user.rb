@@ -34,6 +34,5 @@ class User < ApplicationRecord
   has_many :deplacements, dependent: :destroy
 
   has_many :residences, dependent: :destroy
-  has_many :adresses, through: :residences
 
 end
