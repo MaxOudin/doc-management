@@ -26,11 +26,14 @@ class User < ApplicationRecord
   validates :password, presence: true
   validates :nom, presence: true
   validates :prenom, presence: true
+  validates :date_naissance, presence: true
 
-  has_one :adresse, as: :addressable, class_name: 'Adresse', dependent: :destroy
   has_one :vehicule, dependent: :destroy
   has_many :affectations, dependent: :destroy
   has_many :sites, through: :affectations
   has_many :deplacements, dependent: :destroy
+
+  has_many :residences, dependent: :destroy
+  has_many :adresses, through: :residences
 
 end
